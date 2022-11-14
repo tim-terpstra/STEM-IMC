@@ -29,7 +29,7 @@
                         $result = textget($k);
                         echo
                         '<div class="vraag_groep">
-                        <h3>'.$val.'</h3></br>
+                        <h3>'.utf8_encode($val).'</h3></br>
                         <div class="radio_value">
                         <text>Helemaal niet van toepassing</text>
                         <text>Deels niet van toepassing</text>
@@ -45,7 +45,7 @@
                           //dit is vraag level
                           echo '<div class="radios">';
                           echo '<div class="vragen">';
-                          echo '<text>'.$row["text_vraag"].'</text>
+                          echo '<text>'.utf8_encode($row["text_vraag"]).'</text>
                           </div>';
                           
                           $score = 10;
