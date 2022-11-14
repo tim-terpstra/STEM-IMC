@@ -31,11 +31,11 @@
                         '<div class="vraag_groep">
                         <h3>'.$val.'</h3></br>
                         <div class="radio_value">
-                        <text>helemaal van toepassing</text>
-                        <text>Deels van toepassing</text>
-                        <text>Neutraal</text>
-                        <text>Deels niet van toepassing</text>
                         <text>Helemaal niet van toepassing</text>
+                        <text>Deels niet van toepassing</text>
+                        <text>Neutraal</text>
+                        <text>Deels van toepassing</text>
+                        <text>helemaal van toepassing</text>
                         </div>'
                         ;
                         // dit is cat level 
