@@ -16,6 +16,7 @@ $arr = array($strategisch,$organisatie,$cultuur,$daadkracht,$marktintroductie,$n
 foreach($arr as $item){
     echo $item;
 }
+db();
 
 
 function getAvgVraag(string $naam){
