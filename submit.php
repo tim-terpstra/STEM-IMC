@@ -1,21 +1,4 @@
 <?php
-$email = $_POST["email"];
-$naam = $_POST["naam"]; 
-$naamorganisatie = $_POST["naamorganisatie"];
-$sbi = $_POST["sbi"];
-$functie = $_POST["functie"];
-$telefoonnummer = $_POST["telefoonnummer"];
-
-$strategisch = getAvgVraag("strategisch_vraag");
-$organisatie = getAvgVraag("organisatie_vraag");
-$cultuur = getAvgVraag("cultuur_vraag");
-$daadkracht = getAvgVraag("daadkracht_vraag");
-$marktintroductie = getAvgVraag("marktintroductie_vraag");
-
-$arr = array($strategisch,$organisatie,$cultuur,$daadkracht,$marktintroductie,$naam, $naamorganisatie,$sbi,$functie,$telefoonnummer,$email);
-foreach($arr as $item){
-    echo $item;
-}
 db();
 
 
@@ -52,7 +35,7 @@ function db(){
   $username = "root";
   $password = "";
   $database = "stem";
-  $table = "vragen";
+  $table = "antwoorden";
   
   //verdeel dit in functies
   
