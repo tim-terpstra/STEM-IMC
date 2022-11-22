@@ -44,10 +44,6 @@ if ($result->num_rows > 0) {
 	//print de data van elke rij
 	while($row = $result->fetch_assoc()) {
 	  echo "<tr><td class='mdl-data-table__cell--non-numeric'>".$row["organisatienaam"]."</td><td>".$row["sbi"]."</td><td>".$row["telefoonnummer"]."</td><td>".$row["functie"]."</td><td>".$row["strategisch"]."</td><td>".$row["organisatie"]."</td><td>".$row["daadkracht"]."</td><td>".$row["cultuur"]."</td><td>".$row["marktintroductie"]."</td></tr>";
-	  echo "<tr><td class='mdl-data-table__cell--non-numeric'>".$row["organisatienaam"]."</td><td>".$row["sbi"]."</td><td>".$row["telefoonnummer"]."</td><td>".$row["functie"]."</td><td>".$row["strategisch"]."</td><td>".$row["organisatie"]."</td><td>".$row["daadkracht"]."</td><td>".$row["cultuur"]."</td><td>".$row["marktintroductie"]."</td></tr>";
-	  echo "<tr><td class='mdl-data-table__cell--non-numeric'>".$row["organisatienaam"]."</td><td>".$row["sbi"]."</td><td>".$row["telefoonnummer"]."</td><td>".$row["functie"]."</td><td>".$row["strategisch"]."</td><td>".$row["organisatie"]."</td><td>".$row["daadkracht"]."</td><td>".$row["cultuur"]."</td><td>".$row["marktintroductie"]."</td></tr>";
-	  echo "<tr><td class='mdl-data-table__cell--non-numeric'>".$row["organisatienaam"]."</td><td>".$row["sbi"]."</td><td>".$row["telefoonnummer"]."</td><td>".$row["functie"]."</td><td>".$row["strategisch"]."</td><td>".$row["organisatie"]."</td><td>".$row["daadkracht"]."</td><td>".$row["cultuur"]."</td><td>".$row["marktintroductie"]."</td></tr>";
-	  echo "<tr><td class='mdl-data-table__cell--non-numeric'>".$row["organisatienaam"]."</td><td>".$row["sbi"]."</td><td>".$row["telefoonnummer"]."</td><td>".$row["functie"]."</td><td>".$row["strategisch"]."</td><td>".$row["organisatie"]."</td><td>".$row["daadkracht"]."</td><td>".$row["cultuur"]."</td><td>".$row["marktintroductie"]."</td></tr>";
 	}
 	echo "</table>";
   } else{
