@@ -91,7 +91,6 @@
         </div>
         </form>
     </div>
-	<!--<script src="index.js"></script>!-->
     <?php
         function textget(string $catagorie){
             $servername = "localhost";
@@ -104,7 +103,7 @@
                 die("Connection failed: " . $conn->connect_error);
               }
             
-            $sql = "SELECT text_vraag FROM text_vragen WHERE catagorie = '$catagorie' ORDER BY nummer_volgorde ASC";
+            $sql = "SELECT text_vraag FROM vragen WHERE catagorie = '$catagorie' ORDER BY nummer_volgorde ASC";
             
             $result = $conn->query($sql);
             return $result;
