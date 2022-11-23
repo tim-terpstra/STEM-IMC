@@ -64,7 +64,7 @@ function db(){
     die("Connection failed: " . $conn->connect_error);
   }
   
-  $qry = "INSERT INTO `vragen` (`ID`, `email`, `sbi`, `functie`, `organisatienaam`, `telefoonnummer`, `koppelcode`, `strategisch`, `organisatie`, `cultuur`, `daadkracht`, `marktintroductie`) VALUES (NULL, '$email', '$sbi', '$functie','$naamorganisatie', '10', 'f', '$strategisch', '$organisatie', '$cultuur', '$daadkracht', '$marktintroductie')";
+  $qry = "INSERT INTO `antwoorden` (`ID`, `email`, `sbi`, `functie`, `organisatienaam`, `telefoonnummer`, `koppelcode`, `strategisch`, `organisatie`, `cultuur`, `daadkracht`, `marktintroductie`) VALUES (NULL, '$email', '$sbi', '$functie','$naamorganisatie', '10', 'f', '$strategisch', '$organisatie', '$cultuur', '$daadkracht', '$marktintroductie')";
   if ($conn->query($qry) === TRUE) {
       echo "New record created successfully";
     } else {
