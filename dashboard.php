@@ -17,10 +17,10 @@ if (!isset($_SESSION['loggedin'])) {
 	</head>
 	<body>
 		<div id="button-div">
-			<button onclick="location.href='logout.php'" id="uitloggen" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+			<button onclick="location.href='logout.php'" id="uitloggen" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
 				Uitloggen
 			</button>
-<button id="aanpassen" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+<button onclick="location.href='vraag-toevoegen.php'" id="toevoegen" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
 	Vraag toevoegen
 </button>
 <button id="aanpassen" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
@@ -41,7 +41,6 @@ if ($result->num_rows > 0) {
 	<div style="overflow-x:auto;" id="table-div";>
 	<table id="table"class="mdl-data-table mdl-js-data-table mdl-shadow--2dp"><tr><th class="mdl-data-table__cell--non-numeric">Organisatie</th><th>SBI</th><th>Telefoonnummer:</th><th>Functie:</th><th>Strategisch</th><th>Organisatie</th><th>Daadkracht</th><th>Cultuur</th><th>Marktintroductie</th></tr>
 	</div>';
-	//print de data van elke rij
 	while($row = $result->fetch_assoc()) {
 	  echo "<tr><td class='mdl-data-table__cell--non-numeric'>".$row["organisatienaam"]."</td><td>".$row["sbi"]."</td><td>".$row["telefoonnummer"]."</td><td>".$row["functie"]."</td><td>".$row["strategisch"]."</td><td>".$row["organisatie"]."</td><td>".$row["daadkracht"]."</td><td>".$row["cultuur"]."</td><td>".$row["marktintroductie"]."</td></tr>";
 	}
