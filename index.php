@@ -53,12 +53,12 @@
                           echo '<text>'.utf8_encode($row["text_vraag"]).'</text>
                           </div>';
                           
-                          $score = 10;
-                            for ($iii = 0; $iii <= 5; $iii++) {
+                          $score = 2;
+                            for ($iii = 1; $iii <= 5; $iii++) {
                             echo '<label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="'.$k.'-option-'.$i.$ii.$iii.'">';
                             echo '<input type="radio" id="'.$k.'-option-'.$i.$ii.$iii.'" class="mdl-radio__button" name="'.$k.'_vraag'.$ii.'" value="'.$score.'" required/></label>';
                             
-                            $score -= 2;
+                            $score += 2;
                           }
                           echo "<div></div></div>";
                           $ii++;
@@ -167,22 +167,29 @@ body{
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom:25px;
   }
 .radio_value{
-  
-  padding-left: 28%;
+  word-break:normal;
+  padding-left: 30%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   text-align: center;
+  padding-right:6%;
+  margin-bottom:6px;
+}
+text{
+  width:20%;
 }
 .vragen{
+  height: min-content;
   width: 25%;
-  margin-bottom: 25px; 
 }
 .vraag_groep{
   background-color: rgba(204, 204, 204, 0.28);
   border-radius: 8px;
+  padding-bottom:1px;
 }
 .vraag_groep h3{
   padding-top:3px;
