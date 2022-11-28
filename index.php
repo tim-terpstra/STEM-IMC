@@ -10,6 +10,11 @@
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
   </head>
   <body>
+    <?php
+    if(array_key_exists('bedrijf', $_GET)) {
+    echo'<h4>Je vult de innovatiescan in voor: '.base64_decode($_GET["bedrijf"]).'</h4>';
+    }
+    ?>
     <div class="center">
       <form method="POST" action="submit.php">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -65,33 +70,70 @@
               ?>
               <div class="vraag_groep">
             <h3>Algemeen</h3>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="naam" name="naam" required>
-              <label class="mdl-textfield__label">Wat is uw naam?</label>
-              <!-- hier nog regex toevoegen met wat er in moet komen -->
-            </div></br>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="naamorganisatie" name="naamorganisatie" required>
-              <label class="mdl-textfield__label">Wat is de naam van uw organisatie?</label>
-            </div></br>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="sbi" name="sbi" required>
-              <label class="mdl-textfield__label"> Wat is de SBI code van uw organisatie?<label>
-            </div></br>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="functie" name="functie" required>
-              <label class="mdl-textfield__label">Wat is uw functie?<label>
-            </div></br>
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="tel" id="telefoonnummer" name="telefoonnummer" pattern="[0-9]{10,12}" required>
-              <label class="mdl-textfield__label">Wat is uw telefoonnummer?</label>
-            </div>
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                      <input class="mdl-textfield__input" type="text" id="naam" name="naam" required>
+                                      <label class="mdl-textfield__label">Wat is uw naam?</label>
+                                      <!-- hier nog regex toevoegen met wat er in moet komen -->
+                                    </div></br>
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                      <input class="mdl-textfield__input" type="text" id="naamorganisatie" name="naamorganisatie" required>
+                                      <label class="mdl-textfield__label">Wat is de naam van uw organisatie?</label>
+                                    </div></br>
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                      <input class="mdl-textfield__input" type="text" id="sbi" name="sbi" required>
+                                      <label class="mdl-textfield__label"> Wat is de SBI code van uw organisatie?<label>
+                                    </div></br>
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                      <input class="mdl-textfield__input" type="text" id="functie" name="functie" required>
+                                      <label class="mdl-textfield__label">Wat is uw functie?<label>
+                                    </div></br>
+                                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                      <input class="mdl-textfield__input" type="tel" id="telefoonnummer" name="telefoonnummer" pattern="[0-9]{10,12}" required>
+                                      <label class="mdl-textfield__label">Wat is uw telefoonnummer?</label>
+                                    </div>
           </div>
           <input type="submit" value="Submit" name="submit">
         </div>
         </form>
     </div>
     <?php
+function printdetailvragen(){
+  echo'
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="naam" name="naam" required>
+              <label class="mdl-textfield__label">Wat is uw naam?</label>
+              <!-- hier nog regex toevoegen met wat er in moet komen -->
+            </div></br>
+            ';
+
+if(!array_key_exists('bedrijf', $_GET)) {
+  echo'
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+  <input class="mdl-textfield__input" type="text" id="naamorganisatie" name="naamorganisatie" required>
+  <label class="mdl-textfield__label">Wat is de naam van uw organisatie?</label>
+  </div></br>
+  ';
+  echo'
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+  <input class="mdl-textfield__input" type="text" id="sbi" name="sbi" required>
+  <label class="mdl-textfield__label"> Wat is de SBI code van uw organisatie?<label>
+  </div></br>
+  ';
+  echo'
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+  <input class="mdl-textfield__input" type="tel" id="telefoonnummer" name="telefoonnummer" pattern="[0-9]{10,12}" required>
+  <label class="mdl-textfield__label">Wat is uw telefoonnummer?</label>
+  </div></br>
+  ';
+}
+echo'
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="functie" name="functie" required>
+            <label class="mdl-textfield__label">Wat is uw functie?<label>
+          </div></br>
+';
+}
+  
         function textget(string $catagorie){
             $servername = "localhost";
             $username = "root";
