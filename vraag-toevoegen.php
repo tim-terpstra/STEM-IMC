@@ -35,7 +35,7 @@ if ($result->num_rows > 0){
         ';
 
       while($row = $result->fetch_assoc()) {
-        echo'<option class="dropitems" value="'.strtoupper($row["catagorie"]).'">'.strtoupper($row["catagorie"]).'</option>';
+        echo'<option class="dropitems" value="'.$row["catagorie"].'">'.strtoupper($row["catagorie"]).'</option>';
       }
       echo'</select></div></br></br>';
       echo'
