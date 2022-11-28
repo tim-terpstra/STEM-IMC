@@ -17,7 +17,6 @@ function getAvgVraag(string $naam){
 }
 
 function db(){
-
   $email = $_POST["email"];
   $naam = $_POST["naam"]; 
   $naamorganisatie = $_POST["naamorganisatie"];
@@ -31,29 +30,29 @@ function db(){
   $daadkracht = getAvgVraag("daadkracht_vraag");
   $marktintroductie = getAvgVraag("marktintroductie_vraag");
 
+  $linkform = "localhost/stem/index.php";
   $servername = "localhost";
   $username = "root";
   $password = "";
   $database = "stem";
   $table = "antwoorden";
-  
-  //verdeel dit in functies
-  
-  // Create connection
+      
   $conn = new mysqli($servername, $username, $password, $database);
   
-  // Check connection
   if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   }
-  
   $qry = "INSERT INTO `vragen` (`ID`, `email`, `sbi`, `functie`, `organisatienaam`, `telefoonnummer`, `koppelcode`, `strategisch`, `organisatie`, `cultuur`, `daadkracht`, `marktintroductie`) VALUES (NULL, '$email', '$sbi', '$functie','$naamorganisatie', '10', 'f', '$strategisch', '$organisatie', '$cultuur', '$daadkracht', '$marktintroductie')";
   if ($conn->query($qry) === TRUE) {
-      echo "New record created successfully";
+      echo "Uw reactie is succesvol binnengekomen!";
+      
     } else {
       echo "Error: " . $qry . "<br>" . $conn->error;
     }
-    
     $conn->close();
+}
+function genereerlink(){
+  $bedrijf_naam = $_POST["naamorganisatie"];
+  return(''.$linkform.'?bedrijf='.base64_encode($bedrijf_naam).'');
 }
 ?>
