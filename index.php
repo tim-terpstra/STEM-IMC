@@ -55,8 +55,8 @@
                           
                           $score = 10;
                             for ($iii = 0; $iii <= 5; $iii++) {
-                            echo '<label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="strategisch-option-'.$i.$ii.$iii.'">';
-                            echo '<input type="radio" id="strategisch-option-'.$i.$ii.$iii.'" class="mdl-radio__button" name="strategisch_vraag'.$i.$ii.'" value="'.$score.'" required/></label>';
+                            echo '<label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="'.$k.'-option-'.$i.$ii.$iii.'">';
+                            echo '<input type="radio" id="'.$k.'-option-'.$i.$ii.$iii.'" class="mdl-radio__button" name="'.$k.'_vraag'.$ii.'" value="'.$score.'" required/></label>';
                             
                             $score -= 2;
                           }
