@@ -25,8 +25,8 @@
                     $catagorien = array(
                         "strategisch" => "1. STRATEGISCHE aspecten bij innovaties",
                         "organisatie" => "2. ORGANISATORISCHE aspecten bij innovaties",
-                        "daadkracht" => "3. CULTURELE aspecten bij innovatie",
-                        "cultuur" => "4. Innovatie DAADKRACHT aspecten",
+                        "cultuur" => "3. CULTURELE aspecten bij innovatie",
+                        "daadkracht" => "4. Innovatie DAADKRACHT aspecten",
                         "marktintroductie" => "5. MARKTINTRODUCTIE aspecten bij innovatie",
                     );
                     $i = 1;
