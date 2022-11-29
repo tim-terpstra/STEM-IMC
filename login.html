@@ -2,23 +2,48 @@
 <html>
 	<head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>STEM Inloggen</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>STEM Inloggen</title>
+		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+		<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 	</head>
 	<body>
-		<div>
-			<h1>Login</h1>
-			<form action="authenticate.php" method="post">
-				<label for="username">
-					<i></i>
-				</label>
-				<input type="text" name="gebruiker" placeholder="Gebruiker" id="gebruiker" required>
-				<label for="wachtwoord">
-					<i></i>
-				</label>
-				<input type="password" name="wachtwoord" placeholder="Wachtwoord" id="wachtwoord" required>
-				<input type="submit" value="Login">
+		<div class="login-wrapper">
+			<div class="title">
+				<h2>Login</h2>
+			</div></br>
+			<form action="authenticate.php" method="POST">
+				<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="text" id="gebruiker" name="gebruiker" required>
+					<label class="mdl-textfield__label">Gerbuiker</label>
+				  </div>
+				  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+					<input class="mdl-textfield__input" type="password" id="wachtwoord" name="wachtwoord" required>
+					<label class="mdl-textfield__label">Wachtwoord</label>
+				  </div>
+				<div class="submit-wrapper">
+					<input id="submit" type="submit" value="Login">
+				</div>
 			</form>
 		</div>
 	</body>
 </html>
+<style>
+.title{
+	width: max-content;
+}
+input{
+	margin-top: 5px;
+}
+.login-wrapper{
+	margin: auto;
+	width:min-content;
+}
+.submit-wrapper{
+	margin-top: 8px !important;
+	margin: auto;
+	width:min-content
+}
+</style>
