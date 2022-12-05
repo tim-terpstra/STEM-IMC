@@ -23,7 +23,7 @@ if (!isset($_SESSION['loggedin'])) {
 
 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
     for="demo-menu-lower-right" id="menu-list">
-  <li class="mdl-menu__item"><a href="gebruiker-toevoegen.php	">Gebruiker toevoegen</a></li>
+  <li class="mdl-menu__item"><a href="gebruiker-toevoegen.php">Gebruiker toevoegen</a></li>
   <button onclick="location.href='logout.php'" id="uitloggen" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
 				Uitloggen
 			</button>
