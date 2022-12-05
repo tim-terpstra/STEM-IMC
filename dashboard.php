@@ -16,10 +16,19 @@ if (!isset($_SESSION['loggedin'])) {
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 	</head>
 	<body>
-		<div id="button-div">
-			<button onclick="location.href='logout.php'" id="uitloggen" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+		<div class="header"><button id="demo-menu-lower-right"
+        class="mdl-button mdl-js-button mdl-button--icon">
+  <i class="material-icons">more_vert</i>
+</button>
+
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+    for="demo-menu-lower-right" id="menu-list">
+  <li class="mdl-menu__item"><a href="gebruiker-toevoegen.php	">Gebruiker toevoegen</a></li>
+  <button onclick="location.href='logout.php'" id="uitloggen" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
 				Uitloggen
 			</button>
+</ul></div>
+		<div id="button-div">
 <button onclick="location.href='vraag-toevoegen.php'" id="toevoegen" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
 	Vraag toevoegen
 </button>
@@ -53,8 +62,14 @@ if ($result->num_rows > 0) {
  #button-div{
 	 width: 100%;
 }
-button{
+#toevoegen, #aanpassen{
 	margin-left:5px !important;
+}
+#uitloggen{
+	display: block;
+  margin-left: auto;
+  margin-right: auto;
+  float: none !important;
 }
 button{
 	float:right;
@@ -68,6 +83,12 @@ button{
 	height: 50%; 
 	margin-top: 20%;
   }
+  #menu-list{
+	padding-top:0px ;
+  }
+a{
+	color:rgb(63,81,181);
+}
   </style>
 <?php
   $conn->close();
