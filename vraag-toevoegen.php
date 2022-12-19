@@ -16,6 +16,7 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: login.html');
 	exit;
 }
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -54,6 +55,15 @@ if ($result->num_rows > 0){
   }else{
     echo"error";
   } 
+  if(array_key_exists('categorie', $_GET)) {
+    $categorie = $_GET["categorie"];
+    echo'
+    <script>
+    let element = document.getElementById("dropdown");
+      element.value = "'.$categorie.'";
+    </script>
+    ';
+  }
 ?>
 </body>
 </html>
