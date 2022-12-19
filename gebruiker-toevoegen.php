@@ -18,7 +18,7 @@ if (!isset($_SESSION['loggedin'])) {
 	</head>
 <body>
 	<div id="formdiv">
-		<form action="submit_gebruiker.php" class="gebruiker toevoegen" method="POST">
+		<form action="submit/submit_gebruiker.php" class="gebruiker toevoegen" method="POST">
 			
 			<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 				<input class="mdl-textfield__input" type="text" id="username" name="username" required>

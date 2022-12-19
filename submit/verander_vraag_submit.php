@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['loggedin'])) {
-	header('Location: login.html');
+	header('Location: ../login.html');
 	exit;
 }
 ?>
@@ -44,7 +44,7 @@ if (!isset($_SESSION['loggedin'])) {
         die("Er is iets verkeerd gegaan, neem contact op met een administrator om het probleem op te lossen.</br> error code:Textupdate");
     }
 
-    header('Location: vraag-lijst.php');
+    header('Location: ../vraag-lijst.php');
     function massposupdate(string $sql, int $richting){
         $conn = db();
 

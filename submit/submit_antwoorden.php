@@ -3,7 +3,6 @@ db();
 
 
 function getAvgVraag(string $naam){
-  //hier dan een naam inserten en met die naam 10 keer loopen dan een array terug geven.
   $arr = array();
   for($i = 1; $i <= 15; $i++){
     if (isset($_POST[$naam.$i])){

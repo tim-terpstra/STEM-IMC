@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['loggedin'])) {
-	header('Location: login.html');
+	header('Location: ../login.html');
 	exit;
 }
 
@@ -47,7 +47,6 @@ if ($conn->connect_error) {
 }
 echo 1;
 $hashed_wachtwoord = password_hash($wachtwoord, PASSWORD_BCRYPT);
-//TODO convert wachtwoord naar gehashed ww
   $qry = "INSERT INTO `gebruikers` (`ID`,`username`, `password`) VALUES (NULL, '$gebruiker', '$hashed_wachtwoord')";
   if ($conn->query($qry) === TRUE) {
       echo "Gebruiker is toegevoegd!";

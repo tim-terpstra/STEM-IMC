@@ -29,7 +29,7 @@ if ($result->num_rows > 0){
       echo'
       <div id="formdiv">
       <p>In welke categorie valt de vraag?</p>
-      <form id="vraagform" action="submit_vraag.php" method="POST">
+      <form id="vraagform" action="submit/submit_vraag.php" method="POST">
       <div id="dropdiv">
       <label class="" for="categorie"></label>
         <select id="dropdown" name="categorie" id="categorie">
