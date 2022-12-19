@@ -16,7 +16,7 @@
     }
     ?>
     <div class="center">
-      <form method="POST" action="submit.php">
+      <form method="POST" action="submit/submit_antwoorden.php">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
           <input class="mdl-textfield__input" type="text" id="email" name="email" required>
           <label class="mdl-textfield__label">E-Mail adress</label>
@@ -43,7 +43,7 @@
                         <text>helemaal van toepassing</text>
                         </div>'
                         ;
-                        // dit is cat level 
+                        // dit is categorie level 
                         if ($result->num_rows > 0) {
                         $ii = 1;
                         while($row = $result->fetch_assoc()) {
@@ -73,7 +73,6 @@
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                       <input class="mdl-textfield__input" type="text" id="naam" name="naam" required>
                                       <label class="mdl-textfield__label">Wat is uw naam?</label>
-                                      <!-- hier nog regex toevoegen met wat er in moet komen -->
                                     </div></br>
                                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                       <input class="mdl-textfield__input" type="text" id="naamorganisatie" name="naamorganisatie" required>

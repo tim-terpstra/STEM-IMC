@@ -38,7 +38,7 @@ if (!isset($_SESSION['loggedin'])) {
     
     while($row = $result->fetch_assoc()) {
         echo'
-        <form id="vraagform" action="verander_vraag_submit.php" method="POST">
+        <form id="vraagform" action="submit/verander_vraag_submit.php" method="POST">
         <div class="mdl-textfield mdl-js-textfield">
         <textarea name="text_vraag" maxlength="250" class="mdl-textfield__input" type="text" form="vraagform"rows= "4" id="text_vraag" REQUIRED>'.utf8_encode($row["text_vraag"]).'</textarea>
         <label class="mdl-textfield__label" for="text_vraag"></label>

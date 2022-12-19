@@ -1,12 +1,9 @@
 <?php
 session_start();
 if (!isset($_SESSION['loggedin'])) {
-	header('Location: login.html');
+	header('Location: ../login.html');
 	exit;
 }
-
-//$categorie = $_POST["categorie"];
-//$text = $_POST["text_vraag"]; 
 if(array_key_exists('text_vraag', $_POST)) {
   db();;}
 
@@ -64,7 +61,6 @@ $nummer_volgorde = $arr[0] + 1;
       <input type="submit" name="ongedaan" class="button" value ="Ongedaan maken">
         </form>
         ';
-	  //todo een ctrl z als het ware toevoegen.
     } else {
       echo "Error: " . $qry . "<br>" . $conn->error;
     }
