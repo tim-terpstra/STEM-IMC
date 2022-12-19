@@ -32,7 +32,7 @@ if (!isset($_SESSION['loggedin'])) {
 <button onclick="location.href='vraag-toevoegen.php'" id="toevoegen" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
 	Vraag toevoegen
 </button>
-<button id="aanpassen" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+<button onclick="location.href='vraag-lijst.php'" id="vragen lijst" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
   Vragen aanpassen
 </button>
 </div>
