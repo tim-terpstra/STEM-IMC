@@ -15,7 +15,6 @@ if (!isset($_SESSION['loggedin'])) {
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 		<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-		<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 	</head>
 <body>
 	<?php
@@ -29,17 +28,18 @@ if (!isset($_SESSION['loggedin'])) {
 	echo'<div class="wrapper">';
 	foreach($catagorien as $k => $val){
 		echo'<div class="catagorie">';
-		echo'<h3>'.utf8_encode($val).' <i style="font-size:24px" class="far"><a href="">&#xf044;</a></i></h3>';
+		echo'<h3>'.utf8_encode($val).' <i style="font-size:24px" class="material-icons"><a href="">&#xe3c9;</a></i></h3>';
 		$arr = textgetarray($k);
 		if ($arr->num_rows > 0){
 			foreach($arr as $textarr){
 				echo $textarr["nummer_volgorde"]; 
 				echo'
 				'.utf8_encode($textarr["text_vraag"]).'
-				<i style="font-size:24px" class="far"><a href="verander-vraag.php?id='.$textarr["id"].'&categorie='.$textarr["catagorie"].'">&#xf044;</a></i></br>
+				<i style="font-size:24px" class="material-icons"><a href="verander-vraag.php?id='.$textarr["id"].'&categorie='.$textarr["catagorie"].'">&#xe3c9;</a></i></br>
 			  ';
 			}
 		}
+		echo '<a href="vraag-toevoegen.php?categorie='.$k.'"><b>voeg een nieuwe vraag toe!</b> <i class="material-icons">add_circle</i><a/>';
 		echo '</div>';
 	}
 	echo'</div>';
@@ -77,5 +77,8 @@ if (!isset($_SESSION['loggedin'])) {
 		margin-left:auto;
 		margin-right:auto;
 		width:60%
+	}
+	.material-icons{
+		vertical-align:  -7px;
 	}
 </style>
