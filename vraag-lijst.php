@@ -4,6 +4,7 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: login.html');
 	exit;
 }
+require "submit/database.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,15 +45,7 @@ if (!isset($_SESSION['loggedin'])) {
 	}
 	echo'</div>';
 	function textgetarray(string $catagorie){
-		$servername = "localhost";
-		$username = "root";
-		$password = "";
-		$database = "stem";
-	  
-		$conn = new mysqli($servername, $username, $password, $database);
-		if ($conn->connect_error) {
-			die("Connection failed: " . $conn->connect_error);
-		  }
+		$conn = db();
 		
 		$sql = "SELECT id, catagorie,text_vraag, nummer_volgorde FROM vragen WHERE catagorie = '$catagorie' ORDER BY nummer_volgorde ASC";
 		$result = $conn->query($sql);

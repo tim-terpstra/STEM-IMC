@@ -4,6 +4,7 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: login.html');
 	exit;
 }
+require "submit/database.php";
 ?>
 <html>
 	<head>
@@ -37,11 +38,7 @@ if (!isset($_SESSION['loggedin'])) {
 </button>
 </div>
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "stem";
-$conn = new mysqli($servername, $username, $password, $database);
+$conn = db();
 $sql = 'SELECT organisatienaam,sbi, functie, telefoonnummer, strategisch, organisatie, daadkracht, cultuur, marktintroductie FROM antwoorden WHERE telefoonnummer IS NOT NULL AND TRIM(telefoonnummer) <> "" ORDER BY id DESC';
 $result = $conn->query($sql);
 

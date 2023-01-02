@@ -1,4 +1,5 @@
 <?php
+require "database.php";
 session_start();
 if (!isset($_SESSION['loggedin'])) {
 	header('Location: ../login.html');
@@ -56,20 +57,6 @@ if (!isset($_SESSION['loggedin'])) {
                 die("Er is iets verkeerd gegaan, neem contact op met een administrator om het probleem op te lossen.</br> error code:Sequanceupdate");
             }
         }
-    }
-    function db(){
-        static $conn;
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $database = "stem";
-        if($conn === NULL){
-            $conn = new mysqli($servername, $username, $password, $database);
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-        }
-        return $conn;
     }
     ?>
 </body>

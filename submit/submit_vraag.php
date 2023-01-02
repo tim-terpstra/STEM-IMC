@@ -4,22 +4,16 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: ../login.html');
 	exit;
 }
+require "database.php";
 if(array_key_exists('text_vraag', $_POST)) {
-  db();;}
+  save();}
 
 if(array_key_exists('ongedaan', $_POST)) {
   undo();}
 
 
 function undo(){
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $database = "stem";
-  $conn = new mysqli($servername, $username, $password, $database);
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
+  $conn = db();
     $categorie = $_POST["categorie"]; 
     $nummer = $_POST["volgorde"];
     $qry = "DELETE FROM vragen WHERE catagorie = '".$categorie."' AND nummer_volgorde = ".$nummer."";
@@ -30,19 +24,11 @@ function undo(){
     }
 }
 
-function db(){
+function save(){
 $categorie = $_POST["categorie"];
 $text = $_POST["text_vraag"]; 
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "stem";
-
-$conn = new mysqli($servername, $username, $password, $database);
-if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
-}
+$conn = db();
 
 $sql = 'SELECT MAX(nummer_volgorde) as nummer from vragen WHERE catagorie = "'.$categorie.'"';
 $result = $conn->query($sql);
