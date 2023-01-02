@@ -18,6 +18,7 @@ function getAvgVraag(string $naam){
 
 function save(){
   $email = $_POST["email"];
+  checkmail($email);
   $naam = $_POST["naam"]; 
   $naamorganisatie = $_POST["naamorganisatie"];
   $sbi = $_POST["sbi"];
@@ -33,8 +34,8 @@ function save(){
   $linkform = "localhost/stem/index.php";
       
   $conn = db();
-
-  $qry = "INSERT INTO `antwoorden` (`ID`, `email`, `sbi`, `functie`, `organisatienaam`, `telefoonnummer`, `koppelcode`, `strategisch`, `organisatie`, `cultuur`, `daadkracht`, `marktintroductie`) VALUES (NULL, '$email', '$sbi', '$functie','$naamorganisatie', '10', 'f', '$strategisch', '$organisatie', '$cultuur', '$daadkracht', '$marktintroductie')";
+ $date = date("Y-m-d");
+  $qry = "INSERT INTO `antwoorden` (`ID`, `email`, `sbi`, `functie`, `organisatienaam`, `telefoonnummer`, `strategisch`, `organisatie`, `cultuur`, `daadkracht`, `marktintroductie`, `invuldatum`) VALUES (NULL, '$email', '$sbi', '$functie','$naamorganisatie', '$telefoonnummer','$strategisch', '$organisatie', '$cultuur', '$daadkracht', '$marktintroductie', '$date')";
   if ($conn->query($qry) === TRUE) {
       echo "Uw reactie is succesvol binnengekomen!";
       
@@ -46,5 +47,21 @@ function save(){
 function genereerlink(){
   $bedrijf_naam = $_POST["naamorganisatie"];
   return(''.$linkform.'?bedrijf='.base64_encode($bedrijf_naam).'');
+}
+function checkmail(string $mail){
+  $conn = db();
+  $sql = 'SELECT invuldatum FROM antwoorden where email = "'.$mail.'" ORDER BY invuldatum DESC LIMIT 1';
+  $result = $conn->query($sql);
+  //eerst kijken of er een eerdere reactie is, zo niet gewoon doorgaan met opslaan. zo wel kijken hoelang geleden. 
+  if($result === TRUE){
+    $strdate = $result->fetch_assoc()["invuldatum"];
+    $date = new DateTime($strdate);
+    $datenow = date_create();
+    $verschil = $date->diff($datenow);
+    $maanden = $verschil->y * 12 + $verschil->m;
+    if ($maanden < 6){
+      exit("reactie niet opgeslagen, er is in de laatste 6 maanden al een invulling met dit e-mail adres");
+    }
+  }
 }
 ?>
