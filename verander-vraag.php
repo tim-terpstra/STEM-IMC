@@ -4,6 +4,7 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: login.html');
 	exit;
 }
+require "submit/database.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,15 +22,7 @@ if (!isset($_SESSION['loggedin'])) {
     if(array_key_exists('id', $_GET)) {
     $id = $_GET["id"];
     
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $database = "stem";
-    
-    $conn = new mysqli($servername, $username, $password, $database);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    $conn = db();
     
     $sql = 'SELECT text_vraag, catagorie ,nummer_volgorde FROM vragen WHERE id = "'.$id.'"';
     $result = $conn->query($sql);

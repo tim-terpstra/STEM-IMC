@@ -16,12 +16,8 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: login.html');
 	exit;
 }
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "stem";
-$conn = new mysqli($servername, $username, $password, $database);
+require "submit/database.php";
+$conn = db();
 $sql = 'SELECT DISTINCT catagorie FROM `vragen`';
 $result = $conn->query($sql);
 

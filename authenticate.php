@@ -1,14 +1,8 @@
 <?php 
 session_start();
- $servername = "localhost";
- $username = "root";
- $password = "";
- $database = "stem";
+require "submit/database.php";
 
- $con = new mysqli($servername, $username, $password, $database);
- if ($con->connect_error) {
-     die("Connection failed: " . $conn->connect_error);
-   }
+ $conn = db();
    //geinspireerd door: "https://codeshack.io/secure-login-system-php-mysql/"
    if ( !isset($_POST['gebruiker'], $_POST['wachtwoord']) ) {
 	//data is niet ingevuld.
@@ -16,7 +10,7 @@ session_start();
     
 
    }
-   if ($stmt = $con->prepare('SELECT id, password FROM gebruikers WHERE username = ?')) {
+   if ($stmt = $conn->prepare('SELECT id, password FROM gebruikers WHERE username = ?')) {
 	$stmt->bind_param('s', $_POST['gebruiker']);
 	$stmt->execute();
 	$stmt->store_result();

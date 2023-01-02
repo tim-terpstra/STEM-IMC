@@ -4,10 +4,10 @@ if (!isset($_SESSION['loggedin'])) {
 	header('Location: ../login.html');
 	exit;
 }
-
+require "database.php";
 var_dump($_POST);
 if(array_key_exists('username', $_POST)) {
-  db();
+  save();
 }
 
 if(array_key_exists('ongedaan', $_POST)) {
@@ -15,14 +15,7 @@ if(array_key_exists('ongedaan', $_POST)) {
 
 
 function undo(){
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $database = "stem";
-  $conn = new mysqli($servername, $username, $password, $database);
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
+  $conn = db();
     $gebruiker = $_POST["gebruiker"];
     $qry = "DELETE FROM gebruikers WHERE username = '".$gebruiker."'";
     if ($conn->query($qry) === TRUE) {
@@ -32,20 +25,11 @@ function undo(){
     }
 }
 
-function db(){
+function save(){
 $gebruiker = $_POST["username"];
 $wachtwoord = $_POST["password"]; 
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "stem";
-
-$conn = new mysqli($servername, $username, $password, $database);
-if ($conn->connect_error) {
-	die("Connection failed: " . $conn->connect_error);
-}
-echo 1;
+$conn = db();
 $hashed_wachtwoord = password_hash($wachtwoord, PASSWORD_BCRYPT);
   $qry = "INSERT INTO `gebruikers` (`ID`,`username`, `password`) VALUES (NULL, '$gebruiker', '$hashed_wachtwoord')";
   if ($conn->query($qry) === TRUE) {

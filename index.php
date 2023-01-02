@@ -11,6 +11,7 @@
   </head>
   <body>
     <?php
+    require "submit/database.php";
     if(array_key_exists('bedrijf', $_GET)) {
     echo'<h4>Je vult de innovatiescan in voor: '.base64_decode($_GET["bedrijf"]).'</h4>';
     }
@@ -134,15 +135,7 @@ echo'
 }
   
         function textget(string $catagorie){
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $database = "stem";
-          
-            $conn = new mysqli($servername, $username, $password, $database);
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-              }
+            $conn = db();
             
             $sql = "SELECT text_vraag FROM vragen WHERE catagorie = '$catagorie' ORDER BY nummer_volgorde ASC";
             
