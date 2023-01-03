@@ -14,4 +14,11 @@ function db(){
     }
     return $conn;
 }
+function getcat(){
+    $conn = db();
+    $sql = 'SELECT * FROM categorien ORDER BY nummer_volgorde ASC';
+    $result = $conn->query($sql);
+    if ($result === FALSE) return null;
+    return $result;
+  }
 ?>

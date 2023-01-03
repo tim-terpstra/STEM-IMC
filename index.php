@@ -23,19 +23,14 @@
           <label class="mdl-textfield__label">E-Mail adress</label>
         </div>
               <?php
-                    $catagorien = array(
-                        "strategisch" => "1. STRATEGISCHE aspecten bij innovaties",
-                        "organisatie" => "2. ORGANISATORISCHE aspecten bij innovaties",
-                        "cultuur" => "3. CULTURELE aspecten bij innovatie",
-                        "daadkracht" => "4. Innovatie DAADKRACHT aspecten",
-                        "marktintroductie" => "5. MARKTINTRODUCTIE aspecten bij innovatie",
-                    );
                     $i = 1;
-                    foreach($catagorien as $k => $val){
-                        $result = textget($k);
+                    $resultcat = getcat(); 
+                    if ($resultcat !== NULL && $resultcat->num_rows > 0){
+                      while($rowcat = $resultcat->fetch_assoc()) {
+                        $result = textget($rowcat["keyword"]);
                         echo
                         '<div class="vraag_groep">
-                        <h3>'.utf8_encode($val).'</h3></br>
+                        <h3>'.$i. '. ' .utf8_encode($rowcat["text_categorie"]).'</h3></br>
                         <div class="radio_value">
                         <text>Helemaal niet van toepassing</text>
                         <text>Deels niet van toepassing</text>
@@ -45,7 +40,7 @@
                         </div>'
                         ;
                         // dit is categorie level 
-                        if ($result->num_rows > 0) {
+                        if ($result !== NULL && $result->num_rows > 0) {
                         $ii = 1;
                         while($row = $result->fetch_assoc()) {
                           //dit is vraag level
@@ -56,8 +51,8 @@
                           
                           $score = 2;
                             for ($iii = 1; $iii <= 5; $iii++) {
-                            echo '<label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="'.$k.'-option-'.$i.$ii.$iii.'">';
-                            echo '<input type="radio" id="'.$k.'-option-'.$i.$ii.$iii.'" class="mdl-radio__button" name="'.$k.'_vraag'.$ii.'" value="'.$score.'" required/></label>';
+                            echo '<label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="'.$rowcat["keyword"].'-option-'.$i.$ii.$iii.'">';
+                            echo '<input type="radio" id="'.$rowcat["keyword"].'-option-'.$i.$ii.$iii.'" class="mdl-radio__button" name="'.$rowcat["keyword"].'_vraag'.$ii.'" value="'.$score.'" required/></label>';
                             
                             $score += 2;
                           }
@@ -68,6 +63,7 @@
                         }
                         echo '</div>';
                         }
+                      }
               ?>
               <div class="vraag_groep">
             <h3>Algemeen</h3>
@@ -134,14 +130,15 @@ echo'
 ';
 }
   
-        function textget(string $catagorie){
-            $conn = db();
-            
-            $sql = "SELECT text_vraag FROM vragen WHERE catagorie = '$catagorie' ORDER BY nummer_volgorde ASC";
-            
-            $result = $conn->query($sql);
-            return $result;
-            }
+function textget(string $catagorie){
+    $conn = db();
+    
+    $sql = "SELECT text_vraag FROM vragen WHERE catagorie = '$catagorie' ORDER BY nummer_volgorde ASC";
+    
+    $result = $conn->query($sql);
+    if ($result === FALSE) return null;
+    return $result;
+    }
     ?>
   </body>
 </html>
