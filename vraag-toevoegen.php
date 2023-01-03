@@ -17,40 +17,41 @@ if (!isset($_SESSION['loggedin'])) {
 	exit;
 }
 require "submit/database.php";
-$conn = db();
-$sql = 'SELECT DISTINCT catagorie FROM `vragen`';
-$result = $conn->query($sql);
+$resultcat = getcat(); 
+if ($resultcat !== NULL && $resultcat->num_rows > 0){
+  while($rowcat = $resultcat->fetch_assoc()) {
+    if ($resultcat->num_rows > 0){
+          echo'
+          <div id="formdiv">
+          <p>In welke categorie valt de vraag?</p>
+          <form id="vraagform" action="submit/submit_vraag.php" method="POST">
+          <div id="dropdiv">
+          <label class="" for="categorie"></label>
+            <select id="dropdown" name="categorie" id="categorie">
+            ';
 
-if ($result->num_rows > 0){
-      echo'
-      <div id="formdiv">
-      <p>In welke categorie valt de vraag?</p>
-      <form id="vraagform" action="submit/submit_vraag.php" method="POST">
-      <div id="dropdiv">
-      <label class="" for="categorie"></label>
-        <select id="dropdown" name="categorie" id="categorie">
-        ';
+          while($row = $resultcat->fetch_assoc()) {
+            echo'<option class="dropitems" value="'.$row["keyword"].'">'.strtoupper($row["keyword"]).'</option>';
+          }
+          echo'</select></div></br></br>';
+          echo'
+            <hr>
+            <p>Wat is de tekst van de vraag?</p>
+            <div class="mdl-textfield mdl-js-textfield">
+            <textarea name="text_vraag" maxlength="250" class="mdl-textfield__input" type="text" form="vraagform"rows= "2" id="text_vraag" REQUIRED ></textarea>
+            <label class="mdl-textfield__label" for="text_vraag">Text van de vraag</label>
+            </div>
+            </br>
+            <input id="toevoegen" type="submit" value="Toevoegen" name="submit">
+            </form>
+            </div>
+          ';
 
-      while($row = $result->fetch_assoc()) {
-        echo'<option class="dropitems" value="'.$row["catagorie"].'">'.strtoupper($row["catagorie"]).'</option>';
-      }
-      echo'</select></div></br></br>';
-      echo'
-        <hr>
-        <p>Wat is de tekst van de vraag?</p>
-        <div class="mdl-textfield mdl-js-textfield">
-        <textarea name="text_vraag" maxlength="250" class="mdl-textfield__input" type="text" form="vraagform"rows= "2" id="text_vraag" REQUIRED ></textarea>
-        <label class="mdl-textfield__label" for="text_vraag">Text van de vraag</label>
-        </div>
-        </br>
-        <input id="toevoegen" type="submit" value="Toevoegen" name="submit">
-        </form>
-        </div>
-      ';
-
-  }else{
-    echo"error";
-  } 
+        }else{
+          echo"error";
+        } 
+    }
+}
   if(array_key_exists('categorie', $_GET)) {
     $categorie = $_GET["categorie"];
     echo'

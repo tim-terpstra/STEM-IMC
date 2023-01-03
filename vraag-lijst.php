@@ -19,19 +19,14 @@ require "submit/database.php";
 	</head>
 <body>
 	<?php
-	$catagorien = array(
-		"strategisch" => "1. STRATEGISCHE aspecten bij innovaties",
-		"organisatie" => "2. ORGANISATORISCHE aspecten bij innovaties",
-		"cultuur" => "3. CULTURELE aspecten bij innovatie",
-		"daadkracht" => "4. Innovatie DAADKRACHT aspecten",
-		"marktintroductie" => "5. MARKTINTRODUCTIE aspecten bij innovatie",
-	);
+	$resultcat = getcat(); 
+    if ($resultcat !== NULL && $resultcat->num_rows > 0){
 	echo'<div class="wrapper">';
-	foreach($catagorien as $k => $val){
+	while($rowcat = $resultcat->fetch_assoc()) {
 		echo'<div class="catagorie">';
-		echo'<h3>'.utf8_encode($val).' <i style="font-size:24px" class="material-icons"><a href="">&#xe3c9;</a></i></h3>';
-		$arr = textgetarray($k);
-		if ($arr->num_rows > 0){
+		echo'<h3><a href="verander-categorie.php?keyword='.$rowcat["keyword"].'&origpos='.$rowcat["nummer_volgorde"].'">'.utf8_encode($rowcat["text_categorie"]).' <i style="font-size:24px" class="material-icons">&#xe3c9;</a></i></h3>';
+		$arr = textgetarray($rowcat["keyword"]);
+		if ($arr !== NULL){
 			foreach($arr as $textarr){
 				echo $textarr["nummer_volgorde"]; 
 				echo'
@@ -40,9 +35,11 @@ require "submit/database.php";
 			  ';
 			}
 		}
-		echo '<a href="vraag-toevoegen.php?categorie='.$k.'"><b>voeg een nieuwe vraag toe!</b> <i class="material-icons">add_circle</i><a/>';
+		echo '<a href="vraag-toevoegen.php?categorie='.$rowcat["keyword"].'"><b>voeg een nieuwe vraag toe!</b> <i class="material-icons">add_circle</i><a/>';
 		echo '</div>';
 	}
+	echo'<a href="categorie-toevoegen.php"><b style="font-size:28px">voeg een nieuwe categorie toe!</b><i style="font-size:34px"class="material-icons">add_circle</i><a/>';
+}
 	echo'</div>';
 	function textgetarray(string $catagorie){
 		$conn = db();
