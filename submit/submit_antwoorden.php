@@ -1,5 +1,7 @@
 <?php
 require "database.php";
+$email = str_replace(' ', '',$_POST["email"]);
+checkmail($email);
 save();
 
 
@@ -17,13 +19,12 @@ function getAvgVraag(string $naam){
 }
 
 function save(){
-  $email = $_POST["email"];
-  checkmail($email);
-  $naam = $_POST["naam"]; 
-  $naamorganisatie = $_POST["naamorganisatie"];
-  $sbi = $_POST["sbi"];
-  $functie = $_POST["functie"];
-  $telefoonnummer = $_POST["telefoonnummer"];
+  $email = str_replace(' ', '',$_POST["email"]);
+  $naam = str_replace(' ', '',$_POST["naam"]); 
+  $naamorganisatie = str_replace(' ', '',$_POST["naamorganisatie"]);
+  $sbi = str_replace(' ', '',$_POST["sbi"]);
+  $functie = str_replace(' ', '',$_POST["functie"]);
+  $telefoonnummer = str_replace(' ', '',$_POST["telefoonnummer"]);
 
   $strategisch = getAvgVraag("strategisch_vraag");
   $organisatie = getAvgVraag("organisatie_vraag");
@@ -33,16 +34,17 @@ function save(){
 
   $linkform = "localhost/stem/index.php";
       
-  $conn = db();
+ $conn = db();
  $date = date("Y-m-d");
-  $qry = "INSERT INTO `antwoorden` (`ID`, `email`, `sbi`, `functie`, `organisatienaam`, `telefoonnummer`, `strategisch`, `organisatie`, `cultuur`, `daadkracht`, `marktintroductie`, `invuldatum`) VALUES (NULL, '$email', '$sbi', '$functie','$naamorganisatie', '$telefoonnummer','$strategisch', '$organisatie', '$cultuur', '$daadkracht', '$marktintroductie', '$date')";
-  if ($conn->query($qry) === TRUE) {
+ $stmt  = $conn->prepare("INSERT INTO `antwoorden` (`ID`, `email`, `sbi`, `functie`, `organisatienaam`, `telefoonnummer`, `strategisch`, `organisatie`, `cultuur`, `daadkracht`, `marktintroductie`, `invuldatum`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+ $stmt ->bind_param("sssssddddds",$email, $sbi, $functie, $naamorganisatie, $telefoonnummer, $strategisch, $organisatie, $cultuur, $daadkracht, $marktintroductie, $date);
+  if ($stmt ->execute() === TRUE) {
       echo "Uw reactie is succesvol binnengekomen!";
       
     } else {
-      echo "Error: " . $qry . "<br>" . $conn->error;
+      echo "Error: " . $stmt . "<br>" . $conn->error;
     }
-    $conn->close();
+    $stmt->close();
 }
 function genereerlink(){
   $bedrijf_naam = $_POST["naamorganisatie"];
@@ -53,7 +55,7 @@ function checkmail(string $mail){
   $sql = 'SELECT invuldatum FROM antwoorden where email = "'.$mail.'" ORDER BY invuldatum DESC LIMIT 1';
   $result = $conn->query($sql);
   //eerst kijken of er een eerdere reactie is, zo niet gewoon doorgaan met opslaan. zo wel kijken hoelang geleden. 
-  if($result === TRUE){
+  if(mysqli_num_rows($result) > 0){
     $strdate = $result->fetch_assoc()["invuldatum"];
     $date = new DateTime($strdate);
     $datenow = date_create();
