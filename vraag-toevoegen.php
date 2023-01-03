@@ -19,7 +19,6 @@ if (!isset($_SESSION['loggedin'])) {
 require "submit/database.php";
 $resultcat = getcat(); 
 if ($resultcat !== NULL && $resultcat->num_rows > 0){
-  while($rowcat = $resultcat->fetch_assoc()) {
     if ($resultcat->num_rows > 0){
           echo'
           <div id="formdiv">
@@ -51,7 +50,6 @@ if ($resultcat !== NULL && $resultcat->num_rows > 0){
           echo"error";
         } 
     }
-}
   if(array_key_exists('categorie', $_GET)) {
     $categorie = $_GET["categorie"];
     echo'
